@@ -1,0 +1,42 @@
+# 请根据实际情况，修改此配置示例中“your-domain.com”、“your-keycloak-domain”、“your-realm”、“cliams”、“scopes”部分
+
+vouch:
+  # domains:
+  # valid domains that the jwt cookies can be set into
+  # the callback_urls will be to these domains
+  #domains:
+  #- yourotherdomain.com
+
+  # - OR -
+  # instead of setting specific domains you may prefer to allow all users...
+  # set allowAllUsers: true to use Vouch Proxy to just accept anyone who can authenticate at the configured provider
+  # and set vouch.cookie.domain to the domain you wish to protect
+  allowAllUsers: true
+
+  cookie:
+    # allow the jwt/cookie to be set into http://yourdomain.com (defaults to true, requiring https://yourdomain.com)
+    # 强烈建议您为自定义域名开启https，并强制http跳转到https，以提升浏览器请求安全性、减少浏览器请求排队等待。
+    # 如希望通过http协议访问，请设置 secure: false
+    # secure: false
+    # vouch.cookie.domain must be set when enabling allowAllUsers
+    domain: yourdomain.com
+
+  document_root:
+
+  headers:
+    claims:
+      - group # group 字段值用作 DataSight 角色。可按实际情况修改
+
+oauth:
+  provider: oidc
+  client_id: xxxxxxxxxxxxx
+  client_secret: xxxxxxxxxxxxx
+  auth_url: http://your-keycloak-domain/realms/your-realm/protocol/openid-connect/auth
+  token_url: http://your-keycloak-domain/realms/your-realm/protocol/openid-connect/token
+  user_info_url: http://your-keycloak-domain/realms/your-realm/protocol/openid-connect/userinfo
+  end_session_endpoint: http://your-keycloak-domain/your-realm/myrealm/protocol/openid-connect/logout
+  scopes:
+    - openid
+    - email
+    - profile
+  callback_url: http://yourdomain.com/auth

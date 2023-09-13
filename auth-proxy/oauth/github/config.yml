@@ -1,0 +1,35 @@
+# 请根据实际情况，修改此配置示例中“your-domain.com”、“cliams”部分
+
+vouch:
+  # domains:
+  # valid domains that the jwt cookies can be set into
+  # the callback_urls will be to these domains
+  #domains:
+  #- yourotherdomain.com
+
+  # - OR -
+  # instead of setting specific domains you may prefer to allow all users...
+  # set allowAllUsers: true to use Vouch Proxy to just accept anyone who can authenticate at the configured provider
+  # and set vouch.cookie.domain to the domain you wish to protect
+  allowAllUsers: true
+
+  cookie:
+    # allow the jwt/cookie to be set into http://yourdomain.com (defaults to true, requiring https://yourdomain.com)
+    # 强烈建议您为自定义域名开启https，并强制http跳转到https，以提升浏览器请求安全性、减少浏览器请求排队等待。
+    # 如希望通过http协议访问，请设置 secure: false
+    # secure: false
+    # vouch.cookie.domain must be set when enabling allowAllUsers
+    domain: your-domain.com
+
+  document_root:
+
+  headers:
+    claims:
+      - login
+      - company # company 字段值用作 DataSight 角色。可按实际情况修改
+
+oauth:
+  provider: github
+  client_id: xxxxxxxxxx
+  client_secret: xxxxxxxxxx
+  callback_url: http://your-domain.com/auth

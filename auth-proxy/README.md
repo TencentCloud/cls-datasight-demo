@@ -14,6 +14,12 @@ DataSight“登录方式”选择“第三方认证登录”后，DataSight 自�
 
 ![登录校验代理流程图](auth-proxy.png)
 
+### 使用参数
+
+反向代理软件发往DataSight的请求中，通过 header `X-DATASIGHT-USER` 指定用户名，`X-DATASIGHT-ROLE` 指定角色名。
+
+如需要一次传入多个角色名，也可通过 `X-DATASIGHT-ROLES` 传入，接受格式： 1. 英文逗号分隔的字符串 `role1,role2` 或 2. JSON数组字符串 `["role1", "role2"]`。DataSight将使用第一个作为角色名。
+
 ### 前置条件
 
 参考[DataSight文档](https://cloud.tencent.com/document/product/614/39331)，在腾讯云控制台 CLS DataSight 处完成配置，开启 DataSight "第三方认证登录"能力。

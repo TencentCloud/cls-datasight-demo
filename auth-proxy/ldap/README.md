@@ -12,7 +12,7 @@
 
 如未登录，则通过本地 nginx-ldap-login 模块展示 LDAP 登录页。输入 LDAP 用户名密码后，重新通过 nginx-ldap-auth 发起登录校验。
 
-登录成功，才把请求转发到DataSight，并在请求中携带 X-DATASIGHT-USER, X-DATASIGHT-ROLE header信息。
+登录成功，才把请求转发到DataSight，并在请求中携带 `X-DATASIGHT-USER`, `X-DATASIGHT-ROLE` header信息。
 
 ![LDAP登录校验代理流程图](ldap-auth-flowchart-401.jpg)
 
