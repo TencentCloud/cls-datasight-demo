@@ -60,7 +60,7 @@ intranet access denied: xxxx
 
 [LDAP](./ldap/README.md)
 
-OAuth 敬请期待
+[OAuth](./oauth/REAEME.md)
 
 
 ### 参考资料
