@@ -19,7 +19,7 @@ vouch:
     # 如希望通过http协议访问，请设置 secure: false
     # secure: false
     # vouch.cookie.domain must be set when enabling allowAllUsers
-    domain: yourdomain.com
+    domain: your-domain.com
 
   document_root:
 
@@ -39,4 +39,4 @@ oauth:
     - openid
     - email
     - profile
-  callback_url: http://yourdomain.com/auth
+  callback_url: http://your-domain.com/auth
