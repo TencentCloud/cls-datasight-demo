@@ -8,6 +8,8 @@ COPY login-page/ /usr/src/app/login-page/
 
 WORKDIR /usr/src/app/
 
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositories
+
 RUN apk update && apk add bash
 
 SHELL ["/bin/bash", "-c"]
@@ -19,8 +21,8 @@ RUN \
     apk --no-cache add openldap-dev && \
     apk --no-cache add --virtual build-dependencies build-base && \
     apk --no-cache add gcc musl-dev libffi-dev openssl-dev && \
-    pip install --upgrade pip &&\
-    pip install python-dotenv setuptools_rust cryptography && \
+    pip install -i https://mirrors.tencent.com/pypi/simple/ --upgrade pip &&\
+    pip install -i https://mirrors.tencent.com/pypi/simple/ python-dotenv setuptools_rust cryptography && \
     apk del build-dependencies
 
 EXPOSE 9000
