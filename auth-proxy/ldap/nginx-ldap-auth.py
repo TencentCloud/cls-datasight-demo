@@ -331,6 +331,9 @@ class LDAPAuthHandler(AuthHandler):
                 group_searchfilter = ctx['group_search_filter'] % attrs[ctx['group_search_filter_user_attribute']][
                     0].decode('utf-8')
 
+                ctx['action'] = 'binding as search user'
+                ldap_obj.bind_s(ctx['binddn'], ctx['bindpasswd'], ldap.AUTH_SIMPLE)
+
                 ctx['action'] = 'running group search query'
                 group_results = ldap_obj.search_s(group_search_basedn, ldap.SCOPE_SUBTREE,
                                                   group_searchfilter,
