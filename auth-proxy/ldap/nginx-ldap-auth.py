@@ -34,7 +34,7 @@ def ensure_bytes(data):
 
 
 def ensure_string(data):
-    return data if sys.version_info.major == 2 else data.decode("utf-8")
+    return data if sys.version_info.major == 2 else data.decode("utf-8") if isinstance(data, bytes) else data
 
 
 # Listen = ('localhost', 8888)
@@ -368,6 +368,7 @@ class LDAPAuthHandler(AuthHandler):
                 group_mappings = ast.literal_eval(ctx['group_mappings'])
                 if isinstance(group_mappings, (list, tuple)):
                     group_dns = list(map(lambda group_dn_item: ensure_string(group_dn_item), group_dns))
+                    self.log_message('user group_dns: "%s"' % ';'.join(group_dns))
                     group_dns_dict = dict(zip(group_dns, [True] * len(group_dns)))
                     for group_mapping in group_mappings:
                         if not (is_not_empty_str(group_mapping[0]) and is_not_empty_str(group_mapping[1])):

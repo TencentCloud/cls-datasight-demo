@@ -22,9 +22,11 @@ load_dotenv()
 if sys.version_info.major == 2:
     from urlparse import urlparse, parse_qs
     from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
+    from cgi import escape
 elif sys.version_info.major == 3:
     from urllib.parse import urlparse, parse_qs
     from http.server import HTTPServer, BaseHTTPRequestHandler
+    from html import escape
 
 Listen = ('0.0.0.0', 9000)
 
@@ -103,7 +105,7 @@ class AppHandler(BaseHTTPRequestHandler):
 
         self.send_response(200)
         self.end_headers()
-        self.wfile.write(ensure_bytes(html_str.replace('TARGET', cgi.escape(target))))
+        self.wfile.write(ensure_bytes(html_str.replace('TARGET', escape(target))))
 
     # processes posted form and sets the cookie with login/password
     def do_POST(self):
