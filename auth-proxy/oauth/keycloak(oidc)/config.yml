@@ -1,6 +1,10 @@
 # 请根据实际情况，修改此配置示例中“your-domain.com”、“your-keycloak-domain”、“your-realm”、“cliams”、“scopes”部分
 
 vouch:
+  # 以下两字段用于调试
+  # testing: true
+  # logLevel: debug
+
   # domains:
   # valid domains that the jwt cookies can be set into
   # the callback_urls will be to these domains
@@ -25,7 +29,10 @@ vouch:
 
   headers:
     claims:
-      - group # group 字段值用作 DataSight 角色。可按实际情况修改
+      # groups 字段值用作 DataSight 角色。可按实际情况修改
+      # 创建 keycloak groups 映射指引，可参考当前目录 groups.md
+      # 可通过 vouch 日志查看实际的 groups 值 (开启 logLevel: debug)
+      - groups
 
 oauth:
   provider: oidc
@@ -34,7 +41,7 @@ oauth:
   auth_url: http://your-keycloak-domain/realms/your-realm/protocol/openid-connect/auth
   token_url: http://your-keycloak-domain/realms/your-realm/protocol/openid-connect/token
   user_info_url: http://your-keycloak-domain/realms/your-realm/protocol/openid-connect/userinfo
-  end_session_endpoint: http://your-keycloak-domain/your-realm/myrealm/protocol/openid-connect/logout
+  end_session_endpoint: http://your-keycloak-domain/realms/your-realm/protocol/openid-connect/logout
   scopes:
     - openid
     - email
