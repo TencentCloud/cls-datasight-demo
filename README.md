@@ -26,7 +26,7 @@ CLS DataSight 当前同时支持以下两套域名：
 由于不同实例的可用域名不同，**接入示例前请先确认您 DataSight 实例的实际域名**，请勿直接照搬示例中的域名。两种确认方式：
 
 1. **控制台**：登录腾讯云 [CLS DataSight 控制台](https://console.cloud.tencent.com/cls)，进入对应 DataSight 实例的详情/域名信息页面查看；
-2. **云API**：调用 CLS [DescribeKafkaConsumer/DescribeAlarms 等] 的 DataSight 实例查询接口，从返回的实例信息中读取 `Domain` / `InternalDomain` 字段（具体接口请参考 [CLS API 文档](https://cloud.tencent.com/document/product/614/39331)）。
+2. **云API**：调用 CLS [DescribeKafkaConsumer/DescribeAlarms 等] 的 DataSight 实例查询接口，从返回的实例信息中读取 `Domain`(公网域名) / `IntranetDomain`(内网域名) 字段（具体接口请参考 [CLS API 文档](https://cloud.tencent.com/document/product/614/39331)）。
 
 ### 如何在示例配置中使用您的域名
 
